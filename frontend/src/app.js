@@ -1,19 +1,28 @@
-import React, { useState } from 'react';
-import Toolbar from './toolBar';
-import TextArea from './textArea';
-
+import React, { useState, useEffect } from "react";
+import Toolbar from "./toolBar";
+import TextArea from "./textArea";
 
 function App() {
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState("");
+  const ws = new WebSocket("ws://localhost:2048");
 
+  ws.addEventListener("open", function () {
+    console.log("Connected from frontend");
+  });
+  useEffect(() => {});
   const handleShare = () => {
-    console.log('Share button clicked');
+    console.log("Share button clicked");
     // Here to handle sharing
   };
 
   return (
     <div className="app-container">
-      <Toolbar onUndo={() => {}} onRedo={() => {}} onSave={() => {}} onShare={handleShare} />
+      <Toolbar
+        onUndo={() => {}}
+        onRedo={() => {}}
+        onSave={() => {}}
+        onShare={handleShare}
+      />
       <TextArea content={content} onContentChange={setContent} />
     </div>
   );
