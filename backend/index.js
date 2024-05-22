@@ -11,23 +11,23 @@ const websocket = new WebSocketServer({ port: 2048 });
 websocket.on("connection", (ws) => {
   console.log("New client connected!");
 
-  ws.send("connection established");
+    ws.send("connection established");
 });
 
-//websocket response when message received
-ws.on("message", (data) => {
-  websocket.clients.forEach((client) => {
+    //websocket response when message received
+    ws.on("message", (data) => {
+        websocket.clients.forEach((client) => {
     console.log(`distributing message: ${data}`);
     client.send(`${data}`);
-  });
-});
+        });
+    });
 
-//websocket response on error
-ws.onerror = function () {
+    //websocket response on error
+    ws.onerror = function () {
   console.log("websocket error");
-};
-
-//websocket response on close
+    };
+    
+    //websocket response on close
 ws.on("close", () => console.log("Client has disconnected!"));
 
 //run server and use websocket

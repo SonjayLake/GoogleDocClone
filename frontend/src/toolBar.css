@@ -1,0 +1,29 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f0f0f0;  
+}
+
+.document-title {
+  flex-grow: 1;  
+  margin-right: 20px;  
+}
+
+.toolbar-buttons {
+  display: flex;
+  align-items: center;  
+}
+
+.toolbar-buttons button,
+.toolbar-buttons .user-icon {
+  margin-left: 10px;  
+}
+
+.user-icon {
+  width: 30px;  
+  height: 30px; 
+  background-color: #eee;  
+  border-radius: 50%;  
+}
