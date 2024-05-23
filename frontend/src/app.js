@@ -8,6 +8,11 @@ function App() {
 
   ws.addEventListener("open", function () {
     console.log("Connected from frontend");
+    ws.send("Ping!");
+  });
+
+  ws.addEventListener("message", (data) => {
+    console.log(data);
   });
   useEffect(() => {});
   const handleShare = () => {

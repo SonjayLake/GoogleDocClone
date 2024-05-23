@@ -11,4 +11,8 @@ wss.on("connection", (ws) => {
   ws.on("close", () => {
     console.log("Client connection closd");
   });
+
+  ws.on("message", (data) => {
+    ws.send("Pong");
+  });
 });
