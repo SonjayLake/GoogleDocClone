@@ -16,7 +16,10 @@ module.exports = {
         "toolbar-grey": "#e5e7eb",
       },
       spacing: {
+        percent_100: "100%",
         percent_95: "95%",
+        percent_90: "90%",
+        percent_80: "80%",
         forty_pixels: "40px",
       },
     },

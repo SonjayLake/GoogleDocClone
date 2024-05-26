@@ -7,8 +7,20 @@ import "react-quill/dist/quill.snow.css";
 
 function TextArea() {
   const [value, setValue] = useState("");
+  const modules = {
+    toolbar: false,
+  };
 
-  return <ReactQuill theme="snow" value={value} onChange={setValue} />;
+  return (
+    <div className="w-percent_80 shadow-md">
+      <ReactQuill
+        theme="snow"
+        value={value}
+        onChange={setValue}
+        modules={modules}
+      />
+    </div>
+  );
 }
 
 export default TextArea;
