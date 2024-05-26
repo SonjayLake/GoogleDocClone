@@ -8,17 +8,11 @@ import "react-quill/dist/quill.snow.css";
 function TextArea() {
   const wss = new WebSocket("ws://localhost:2048");
 
-  wss.addEventListener("open", () => {
-    console.log("Connected to backend websocket");
-  });
-
-  wss.addEventListener("message", (data) => {
-    console.log(`Received ${data} from backend`);
-  });
-
-  wss.addEventListener("close", () => {
-    console.log("Closing websocket connection to backend");
-  });
+  function stripHTMLTags(htmlString) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlString, "text/html");
+    return doc.body.textContent || "";
+  }
 
   const [value, setValue] = useState("");
   const modules = {
@@ -30,7 +24,12 @@ function TextArea() {
       <ReactQuill
         theme="snow"
         value={value}
-        onChange={setValue}
+        onChange={(e) => {
+          setValue(e);
+          const parsedString = stripHTMLTags(e);
+
+          wss.send(parsedString);
+        }}
         modules={modules}
       />
     </div>
