@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 
 import dynamic from "next/dynamic";
 
-const ReactQuill = dynamic(() => import("react-quill"));
-import "react-quill/dist/quill.snow.css";
+dynamic(() => import("react-quill/dist/quill.snow.css"));
 
 function TextArea() {
+  const ReactQuill = useMemo(
+    () => dynamic(() => import("react-quill"), { ssr: false }),
+    []
+  );
+
   const wss = new WebSocket("ws://localhost:2048");
 
   function stripHTMLTags(htmlString) {
@@ -20,19 +24,17 @@ function TextArea() {
   };
 
   return (
-    <div className="w-percent_80 shadow-md">
-      <ReactQuill
-        theme="snow"
-        value={value}
-        onChange={(e) => {
-          setValue(e);
-          const parsedString = stripHTMLTags(e);
+    <ReactQuill
+      className="w-percent_60 shadow-md bg-white"
+      value={value}
+      onChange={(e) => {
+        setValue(e);
+        const parsedString = stripHTMLTags(e);
 
-          wss.send(parsedString);
-        }}
-        modules={modules}
-      />
-    </div>
+        wss.send(parsedString);
+      }}
+      modules={modules}
+    />
   );
 }
 

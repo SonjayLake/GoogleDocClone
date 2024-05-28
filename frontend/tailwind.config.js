@@ -2,6 +2,7 @@
 module.exports = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/pages/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
@@ -14,12 +15,14 @@ module.exports = {
       },
       colors: {
         "toolbar-grey": "#e5e7eb",
+        "blue-background": "#e0f2fe",
       },
       spacing: {
         percent_100: "100%",
         percent_95: "95%",
         percent_90: "90%",
         percent_80: "80%",
+        percent_60: "60%",
         forty_pixels: "40px",
       },
     },
