@@ -35,11 +35,13 @@ function LoginForm() {
       if (!response.ok) {
         throw new Error(data.message || "Something went wrong");
       }
+      localStorage.setItem('token', data.token); 
 
       // Assuming the backend responds with a redirect URL or some token
-      revalidatePath("/document"); // Update cached posts
-      redirect(`/document`); // Navigate to the new post page -> TODO: CREATE UI FOR USER DOCUMENTS AND REDIRECT THERE
+      //revalidatePath("/documents"); // Update cached posts
+      //redirect(`/user/documents`); // Navigate to the new post page -> TODO: CREATE UI FOR USER DOCUMENTS AND REDIRECT THERE
       // window.location.href = '/documents'; // Use window.location for navigation
+      window.location.href = '/user/documents';
     } catch (err) {
       console.error("Login failed:", err);
       setError(err.message);
